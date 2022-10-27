@@ -1,4 +1,4 @@
 Estrutura:
     - wsgi: Gerencia a parte de servidor dos Códigos
     - URl: Que define quais os links do meu sistema
-    - settings: Onde que o Django vai procurar certas configurações (Onde vão estar as fotos)
+    - settings: Onde que o Django vai procurar certas configurações (Onde vão estar as fotos, etc...)
