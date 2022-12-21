@@ -15,4 +15,12 @@ HomeFilmes Hashflix
     <img src="{{ filme.thumb.url}}">
     {% endfor %}
 </div>
+<div class="py-10">
+    <h2>Novo</h2>
+    {{ lista_filmes_recentes }}
+</div>
+<div class="py-10">
+    <h2>Em alta</h2>
+    {{ lista_filmes_alta }}
+</div>
 {% endblock %}

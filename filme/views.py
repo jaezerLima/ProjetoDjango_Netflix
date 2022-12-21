@@ -25,3 +25,16 @@ class Homefilmes(ListView):
 class Detalhesfilme(DetailView):
     template_name = 'detalhesfilme.html'
     model = Filme
+
+    def get(self, request, *args, **kwargs):
+        #Descobrir qual o filme ele ta acessando -
+        filme = self.get_object()
+        filme.visualizacoes += 1
+        filme.save()
+        return super().get(request, *args, **kwargs) # Redireciona o usuario para a url final
+
+    def get_context_data(self, **kwargs):
+        context = super(Detalhesfilme, self).get_context_data(**kwargs)
+        filmes_relacionados = Filme.objects.filter(categoria=self.get_object().categoria)
+        context['filmes_relacionados'] = filmes_relacionados
+        return context
