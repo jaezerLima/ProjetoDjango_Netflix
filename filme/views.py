@@ -35,6 +35,20 @@ class Detalhesfilme(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(Detalhesfilme, self).get_context_data(**kwargs)
-        filmes_relacionados = Filme.objects.filter(categoria=self.get_object().categoria)
+        filmes_relacionados = self.model.objects.filter(categoria=self.get_object().categoria)
         context['filmes_relacionados'] = filmes_relacionados
         return context
+
+
+class PesquisaView(ListView):
+    template_name = 'pesquisa.html'
+    model = Filme
+
+    # Editando o nosso object_list
+    def get_queryset(self):
+        termo_pesquisa = self.request.GET.get('query')
+        if termo_pesquisa:
+            object_list = self.model.objects.filter(titulo__icontains=termo_pesquisa)
+            return object_list
+        else:
+            return None
